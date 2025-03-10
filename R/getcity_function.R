@@ -1,9 +1,7 @@
 #' @name get_city
-#' Get City Function
-#'
-#' This function allows you to search by city name and returns the latitude and
+#' @title Get City Function
+#' @description This function allows you to search by city name and returns the latitude and
 #' longitude formatted for use in further API requests
-#'
 #' @param string The search string to find the city
 #' @keywords city search
 #' @export

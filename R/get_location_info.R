@@ -1,10 +1,8 @@
 #' @name get_location_info
-#' Get Location Info Function
-#'
-#' This function allows the user to input a location ID
+#' @title Get Location Info Function
+#' @description This function allows the user to input a location ID
 #' which will then provide information for the specified location
 #' Users can optionally set the currency for results (default CAD)
-#'
 #' @param location_id The location_id to search
 #' @return A tidy dataframe with information for the inputted location_id
 #' @export
