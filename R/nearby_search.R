@@ -16,11 +16,9 @@
 #' 
 #' @export
 
-source("get_city.R")
-
-nearby_search <- function(location_name, category, api_key = api_key) {
+nearby_search <- function(location_name, category) {
   
-  latlong <- get_city(location_name)
+  latlong <- TripadvisoR::get_city(location_name)  
   
   if (latlong == "") {
     return("Error: Could not retrive lat/long for this location")

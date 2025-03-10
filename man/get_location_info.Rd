@@ -3,11 +3,14 @@
 \name{get_location_info}
 \alias{get_location_info}
 \title{Get Location Info Function}
+\usage{
+get_location_info(location_id)
+}
 \arguments{
 \item{location_id}{The location_id to search}
 }
 \value{
-A tidy dataframe with information for the inputted location_id
+A tidy data frame with information for the inputted location_id
 }
 \description{
 This function allows the user to input a location ID

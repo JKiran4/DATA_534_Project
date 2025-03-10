@@ -2,4 +2,7 @@
 
 export(get_city)
 export(get_location_info)
+export(nearby_search)
 export(top_ten)
+import(httr)
+import(jsonlite)
