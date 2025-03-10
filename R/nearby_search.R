@@ -8,7 +8,7 @@
 #' @return A tidy dataframe with 10 locations of chosen category and their location_id, name, distance and bearing
 #' nearby_search()
 
-source("getcity_function.R")
+source("get_city.R")
 
 library(httr)
 library(jsonlite)
