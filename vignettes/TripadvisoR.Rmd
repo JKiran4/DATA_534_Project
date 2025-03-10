@@ -84,9 +84,8 @@ get_location_info(1996323)
 
 ```
 
-```{r ratings histogram}
+```{r ratings histogram, fig.width=6, fig.height=3.5}
 
-library(dplyr)
 library(tidyr)
 library(ggplot2)
 
@@ -104,9 +103,31 @@ location_data <- lapply(ids, function(id) {
            `Count.3.Star.Ratings`, `Count.4.Star.Ratings`, `Count.5.Star.Ratings`)
 })
 
-# combine into a single data frame
+# combine into a single data frame and convert to long format
 ratings_df <- bind_rows(location_data)
 
+ratings_long <- ratings_df %>%
+  pivot_longer(cols = -Name, names_to = "Star_Rating", values_to = "Count")
+
+# making cleaner labels
+ratings_long$Star_Rating <- factor(ratings_long$Star_Rating, 
+                                   levels = colnames(ratings_df)[-1],  
+                                   labels = c("1 Star", "2 Stars", "3 Stars", "4 Stars", "5 Stars"))
+
+# make sure rating counts are numeric, not categorical
+ratings_long$Count <- as.numeric(ratings_long$Count)
+
+# generate plots for each restaurant
+for (restaurant in unique(ratings_long$Name)) {
+  plot <- ggplot(ratings_long %>% filter(Name == restaurant), aes(x = Star_Rating, y = Count, fill = Star_Rating)) +
+    geom_bar(stat = "identity") +
+    labs(title = paste(restaurant, "Reviews"), x = NULL, y = "Count") +
+    theme_minimal() +
+    theme(legend.position = "none") +
+    scale_fill_brewer(palette = "Set2")
+  
+  print(plot)
+}
 
 ```
 
