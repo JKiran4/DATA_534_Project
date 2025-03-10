@@ -87,6 +87,7 @@ get_location_info(1996323)
 ```{r ratings histogram, fig.width=6, fig.height=3.5}
 
 library(tidyr)
+library(dplyr)
 library(ggplot2)
 
 # get top 10 restaurants

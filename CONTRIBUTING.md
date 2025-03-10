@@ -1,8 +1,29 @@
 # Contributing
 
-In this project, we will be using Github for version control. Collaborators will use the working branch to pull the repository onto their local system for individual workflows. They will then add any work they have completed
-into this branch and push back to the working branch on Github. After review by all group members and every member is in agreement of the changes, the working branch will be merged into the main branch.
+In this project, we will be using Github to version control our work. Individual developers will fork the main repository into their own repository. To work locally, developers will then clone their forked repository. To upload their work, developers will push changes to their forked repository and send a pull request to at least one other developer for review.
 
-An overview of branches can be found here [Github Branches]([https://guides.github.com/activities/forking/](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches)).
+The full instructions can be found from the [Github guides to Forking](https://guides.github.com/activities/forking/).
 
-### Example of a contributing workflow:
+For individual workflows, developers are permitted to use branching, as described in the [GitFlow guide](https://guides.github.com/introduction/flow/).
+
+## Example of a contributing workflow:
+
+Fork, then clone the repo:
+
+    git clone git@github.com:<your_username>/TripadvisoR.git
+
+Make changes, then push the repo:
+
+    git add .
+    git commit -m "<meaningful_commit_message>"
+    git push
+
+If the `master` branch is ahead of the forked branch:
+
+    git remote add upstream <original_repo_URL>
+    git fetch upstream
+    git merge upstream/master
+
+Push to your fork and submit a pull request.
+
+Contributing document derived from [Thoughtbot](https://github.com/thoughtbot/factory_bot_rails/blob/master/CONTRIBUTING.md).
