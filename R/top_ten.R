@@ -1,13 +1,21 @@
 #' @name top_ten
+#' 
 #' @title Top Ten Function
+#' 
 #' @description This function returns IDs and names on the top ten best matches of businesses
 #' based on a search string and optional business type and location filters
+#' 
 #' @param string The search string for the query
 #' @param type Optional field to limit the business type to one of "hotels",
 #' "attractions", "restaurants", or "geos".
 #' @param city Optional field that will limit search to a specific geo location
+#' 
 #' @keywords business search
+#' 
+#' @import httr
+#' 
 #' @export
+#' 
 #' @examples
 #' top_ten()
 

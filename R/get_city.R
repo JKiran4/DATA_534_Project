@@ -1,14 +1,21 @@
 #' @name get_city
+#' 
 #' @title Get City Function
+#' 
 #' @description This function allows you to search by city name and returns the latitude and
 #' longitude formatted for use in further API requests
+#' 
 #' @param string The search string to find the city
+#' 
 #' @keywords city search
+#' 
+#' @import httr
+#' 
 #' @export
+#' 
 #' @examples
 #' get_city()
 
-library(httr)
 get_city <- function(string) {
 
   params <- list(
