@@ -9,7 +9,6 @@ vignette: >
 ---
 
 ```{r setup, include = FALSE}
-library(httr)
 knitr::opts_chunk$set(collapse = TRUE)
 ```
 
@@ -30,6 +29,7 @@ This R package utilizes the various APIs provided by Tripadvisor to retrieve:
 ```{r}
 devtools::install_github('JKiran4/TripadvisoR')
 ```
+
 ## Load Package
 ```{r}
 library(TripadvisoR)
@@ -53,34 +53,43 @@ Before running functions, make sure to retrieve the api key from Tripadvisor and
 `top_ten(string, type = NA, city = NA)` takes in multiple inputs to return basic information on the top ten location results (location id, name, country, address string) from Tripadvisor. The type refers to the optional location type which is a string (hotels, attractions, restaurants, geos, NA). The city is an optional string which will call the `get_city()`
 function if the user inputs a string.
 
+### Nearby location serach
+`nearby_search(location_name, type = NA)` takes in a location name to return the top 10 closest locations, with an optional parameter to specify the type like the `top_ten()` function.
+
 ### Location information
 `get_location_info(location_id)` takes in a location id to output a data frame with information corresponding to the location.
 
 ## Example
 ```{r echo = FALSE}
 
-api_key = "YOUR API KEY"
+api_key = "AA79C765B0DE44CD91518F3456F2A6A8"
 
 ```
 
 ```{r get city coordinates}
 
 # get city information from the following string: "Vancouver in Canada"
-get_city("Vancouver in Canada")
+get_city(string = "Vancouver in Canada")
 
 ```
 
 ```{r top ten locations}
 
 # get top 10 results for restaurants in "Kelowna" with the string "Best Sushi in Town"
-top_ten("Best Sushi in Town", type = "restaurants", city = "Kelowna")
+top_ten(string = "Best Sushi in Town", type = "restaurants", city = "Kelowna")
+
+```
+```{r nearby_search}
+
+# nearby search for "YAMA Kitchen Kelowna" with category "restaurants"
+nearby_search(location_name = "YAMA Kitchen Kelowna", category = "restaurants")
 
 ```
 
 ```{r location information}
 
 # get location info for the ID 1996323
-get_location_info(1996323)
+get_location_info(location_id = 1996323)
 
 ```
 
