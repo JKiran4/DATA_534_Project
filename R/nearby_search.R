@@ -16,7 +16,7 @@
 #' 
 #' @export
 
-nearby_search <- function(location_name, category, api_key = api_key) {
+nearby_search <- function(location_name, category) {
   
   latlong <- TripadvisoR::get_city(location_name)  
   
