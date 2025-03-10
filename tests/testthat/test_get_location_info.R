@@ -11,7 +11,7 @@ test_that("Function returns a data frame from valid location id", {
 
 test_that("Function can handle invalid location id", {
   result <- get_location_info(1234567890123)
-  expect_equal(nrow(result), 1)
+  expect_equal(nrow(result), 0)
 })
 
 test_that("Function handles successful request to API", {
