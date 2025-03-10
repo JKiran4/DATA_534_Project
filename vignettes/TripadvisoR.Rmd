@@ -1,0 +1,35 @@
+---
+title: "TripadvisoR for Dummies"
+author: "Kiran John, Foster Lockerbie, Seamus-Riordan Short"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to FixerR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+library(httr)
+knitr::opts_chunk$set(collapse = TRUE)
+```
+
+# About
+The `TripadvisoR` package offers a suite of functions for the [Tripadvisor API](https://tripadvisor-content-api.readme.io/).
+
+> "Increase your user experience, engagement, and conversion with Tripadvisor’s globally recognized and highly trusted content. Our partner API provides you with dynamic access to Tripadvisor content, enabling seamless integration with your website and applications. Locations are defined within this API as hotels, restaurants or attractions."
+
+This R package utilizes the various APIs provided by Tripadvisor to retrieve:
+- city information based on a string
+- top 10 locations based on a string, with the option of specifying coordinates to search from
+- provide information for a given location id
+
+## Installation
+
+`TripadvisoR` is available publicly on [GitHub](https://github.com/JKiran4/TripadvisoR)
+
+```{r}
+devtools::install_github('JKiran4/TripadvisoR')
+library(TripadvisoR)
+```
+
+
