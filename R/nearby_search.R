@@ -1,17 +1,22 @@
 #' @name nearby_search
+#' 
 #' @title Get Nearby Locations Function
+#' 
 #' @description This function allows you to search by place name and category of attraction (e.g. restaurant) and 
 #' returns 10 nearby attractions of that category and their distance from the location
 #'
 #' @param location_name The search string to find the city
 #' @param category The type of location to retrieve
+#' 
 #' @return A tidy dataframe with 10 locations of chosen category and their location_id, name, distance and bearing
 #' nearby_search()
+#' 
+#' @import httr
+#' @import jsonlite
+#' 
+#' @export
 
 source("get_city.R")
-
-library(httr)
-library(jsonlite)
 
 nearby_search <- function(location_name, category, api_key = api_key) {
   

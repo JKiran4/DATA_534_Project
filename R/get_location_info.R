@@ -6,11 +6,13 @@
 #'
 #' @param location_id The location_id to search
 #' @return A tidy data frame with information for the inputted location_id
+#' 
+#' @import httr
+#' 
 #' @export
+#' 
 #' @examples
 #' get_location_info()
-
-library(httr)
 
 get_location_info <- function(location_id) {
   
