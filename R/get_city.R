@@ -8,6 +8,7 @@
 #' @examples
 #' get_city()
 
+library(httr)
 get_city <- function(string) {
 
   params <- list(
