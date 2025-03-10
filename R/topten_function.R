@@ -1,3 +1,4 @@
+#' @name top_ten
 #' Top Ten Function
 #'
 #' This function returns IDs and names on the top ten best matches of businesses
@@ -13,14 +14,14 @@
 #' top_ten()
 
 top_ten <- function(string, type = NA, city = NA) {
-  
+
   options <- c("hotels", "attractions", "restaurants", "geos", NA)
-  
+
   if (!(type %in% options)) {
     print("Invalid business type input, defaulting to no type filter. Must be one of 'hotels', 'attractions', 'restaurants', or 'geos'.")
-    type = NA 
+    type = NA
   }
-  
+
   if (is.na(city)) {
     params <- list(
       key = api_key,
@@ -29,7 +30,7 @@ top_ten <- function(string, type = NA, city = NA) {
       language = "en"
     )
   }
-  
+
   else {
     params <- list(
       key = api_key,
@@ -39,10 +40,10 @@ top_ten <- function(string, type = NA, city = NA) {
       latLong = get_city(city)
     )
   }
-  
+
   response <- GET("https://api.content.tripadvisor.com/api/v1/location/search", query = params)
   content_data <- content(response, as = "parsed")
-  
+
   results <- data.frame(
     id = character(),
     name = character(),
@@ -50,16 +51,16 @@ top_ten <- function(string, type = NA, city = NA) {
     address = character(),
     stringsAsFactors = FALSE
   )
-  
+
   for (i in 1:length(content_data$data)) {
     results[i, "id"] <- content_data$data[[i]]$location_id
     results[i, "name"] <- content_data$data[[i]]$name
     results[i, "country"] <- content_data$data[[i]]$address_obj$country
     results[i, "address"] <- content_data$data[[i]]$address_obj$address_string
   }
-  
+
   if (is.null(results)) { return("No results!") }
-  
+
   return(results)
-  
+
 }
