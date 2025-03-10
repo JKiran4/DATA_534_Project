@@ -15,5 +15,5 @@ Make sure you set the value of `api_key` in your RStudio environment to a valid 
 
 For an overview of package functionality use the following command: `help("TripadvisoR")`
 
-![](img/tripadvisoRowl.png)
+![](img/tripadvisorowl.png)
 
