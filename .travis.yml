@@ -1,5 +1,6 @@
 language: r
 cache: packages
 warnings_are_errors: false
-before_install:
-  - cd tests
+script:
+  - R CMD build .  
+  - R CMD check *tar.gz --as-cran  
