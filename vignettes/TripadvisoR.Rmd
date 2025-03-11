@@ -62,7 +62,7 @@ function if the user inputs a string.
 ## Example
 ```{r echo = FALSE}
 
-api_key = "AA79C765B0DE44CD91518F3456F2A6A8"
+api_key = "YOUR API KEY"
 
 ```
 
