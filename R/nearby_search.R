@@ -59,8 +59,13 @@ nearby_search <- function(location_name, type = NA) {
     }
     
   } else {
-    return(paste("Error:", status_code(response)))
+    return(paste("Error:", status_code(response), ", invalid input"))
   }
 }
+results <- nearby_search(location_name = "cartagena", type = "hotels")
+results
 
+test_file("C:\\Users\\Foste\\Documents\\Block5\\DATA534\\DATA_534_Project\\tests\\testthat\\test_nearby_search.R")
 
+badresult <- nearby_search(location_name = "Calgary", type = "bowling alley")
+print(badresult)

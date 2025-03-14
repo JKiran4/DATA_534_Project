@@ -11,7 +11,7 @@ test_that("Function returns a data frame from valid location name", {
 
 test_that("Function can handle invalid category name", {
   result <- nearby_search(location_name = "Calgary", type = "bowling alley")
-  expect_equal(nrow(result), 1)
+  expect_equal(result, "Error: 400 , invalid input")
 })
 
 test_that("Function handles successful request to API", {
