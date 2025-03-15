@@ -2,7 +2,10 @@
 
 DATA 534 Project
 
-Kiran John, Foster Lockerbie, Seamus Riordan-Short
+Collaborators:
+- Kiran John
+- Foster Lockerbie
+- Seamus Riordan-Short
 
 ## Overview
 The `TripadvisoR` package offers a suite of functions for the [Tripadvisor API](https://tripadvisor-content-api.readme.io/). Note that users are able to make 5,000 free monthly calls before being charged.
