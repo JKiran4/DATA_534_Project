@@ -20,6 +20,7 @@ The `TripadvisoR` package offers a suite of functions for the [Tripadvisor API](
 This R package utilizes the various APIs provided by Tripadvisor to retrieve:
 - city information based on a string
 - top 10 locations based on a string, with the option of specifying coordinates to search from
+- the 10 closest locations to a specified attraction
 - provide information for a given location id
 
 ## Installation
