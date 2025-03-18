@@ -18,6 +18,8 @@
 
 top_ten <- function(string, type = NA, city = NA) {
 
+  api_key <- Sys.getenv("API_KEY")
+
   options <- c("hotels", "attractions", "restaurants", "geos", NA)
 
   if (!(type %in% options)) {
