@@ -23,8 +23,9 @@ jobs:
       - name: Install dependencies
         run: |
           install.packages("remotes")
+          install.packages("devtools")
           remotes::install_deps(dependencies = TRUE)
-          install.packages(c("rcmdcheck", "rmarkdown", "knitr"))
+          install.packages("rcmdcheck")  
         shell: Rscript {0}
 
       - name: Install package with authentication
