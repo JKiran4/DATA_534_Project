@@ -26,7 +26,7 @@ jobs:
         run: |
           install.packages("remotes")
           remotes::install_deps(dependencies = TRUE)
-          install.packages(c("rcmdcheck", "rmarkdown", "knitr"))  # Ensure vignette support
+          install.packages(c("rcmdcheck", "rmarkdown", "knitr", "devtools")) 
         shell: Rscript {0}
 
       - name: Install package
