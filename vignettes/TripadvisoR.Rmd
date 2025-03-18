@@ -83,7 +83,7 @@ top_ten(string = "Best Sushi in Town", type = "restaurants", city = "Kelowna")
 ```{r nearby_search}
 
 # nearby search for "YAMA Kitchen Kelowna" with category "restaurants"
-nearby_search(location_name = "YAMA Kitchen Kelowna", category = "restaurants")
+nearby_search(location_name = "YAMA Kitchen Kelowna", type = "restaurants")
 
 ```
 
