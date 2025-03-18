@@ -23,6 +23,9 @@ jobs:
       - name: Install Pandoc
         run: |
           install.packages("rmarkdown")
+          install.packages("knitr")
+          install.packages("tinytex")  # Ensures full LaTeX support
+          tinytex::install_tinytex()   # Install TinyTeX (needed for PDF vignettes)
         shell: Rscript {0}
 
       - name: Install dependencies
@@ -30,7 +33,7 @@ jobs:
           install.packages("remotes")
           install.packages("devtools")
           remotes::install_deps(dependencies = TRUE)
-          install.packages("rcmdcheck")  
+          install.packages("rcmdcheck")
         shell: Rscript {0}
 
       - name: Install package with authentication
