@@ -29,7 +29,7 @@ jobs:
 
       - name: Install package with authentication
         run: |
-          remotes::install_github("yourusername/TripadvisoR", auth_token = Sys.getenv("GITHUB_PAT"))
+          remotes::install_github("JKiran4/TripadvisoR", auth_token = Sys.getenv("GITHUB_PAT"))
         shell: Rscript {0}
 
       - name: Build vignettes
