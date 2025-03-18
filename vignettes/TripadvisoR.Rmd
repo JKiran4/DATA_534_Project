@@ -63,7 +63,7 @@ function if the user inputs a string.
 ## Example
 ```{r echo = FALSE}
 
-api_key = "YOUR API KEY"
+api_key <- Sys.getenv("API_KEY")
 
 ```
 
