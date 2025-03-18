@@ -2,7 +2,7 @@ library(TripadvisoR)
 
 context("Testing get_city")
 
-api_key <- Sys.getenv("api_key")
+api_key <- Sys.getenv("API_KEY")
 
 format <- "^\\d{1,3}\\.\\d{1,8}%2C-?\\d{1,3}\\.\\d{1,8}$"
 
