@@ -1,29 +1,29 @@
-#' Get Location Info Function
+#' @name get_location_info
 #'
-#' This function allows the user to input a location ID
+#' @title Get Location Info Function
+#'
+#' @description This function allows the user to input a location ID
 #' which will then provide information for the specified location
 #' Users can optionally set the currency for results (default CAD)
 #'
 #' @param location_id The location_id to search
+#'
 #' @return A tidy data frame with information for the inputted location_id
-#' 
+#'
 #' @import httr
-#' 
+#'
 #' @export
-#' 
-#' @examples
-#' get_location_info()
 
 get_location_info <- function(location_id) {
-  
+
   params <- list(
     key = api_key,
     language = "en",
     currency = "CAD"
   )
-  
+
   loc_url <- paste0("https://api.content.tripadvisor.com/api/v1/location/", location_id, "/details")
-  
+
   # try to send the request
   response <- tryCatch({
     GET(loc_url, query = params)
@@ -31,12 +31,12 @@ get_location_info <- function(location_id) {
     message("Request error: ", e$message)
     return(NULL)
   })
-  
+
   # return empty data frame if NULL response
   if (is.null(response)) {
     return(data.frame())
   }
-  
+
   # try to parse location date
   loc_data <- tryCatch({
     content(response, as = "parsed")
@@ -44,13 +44,13 @@ get_location_info <- function(location_id) {
     message("Error in parsing: ", e$message)
     return(NULL)
   })
-  
+
   # return empty data frame if NULL response
   if (is.null(loc_data)) {
     return(data.frame())
   }
-  
-  
+
+
   # ifelse statements to retrieve releveant data
   name <- ifelse(!is.null(loc_data$name), loc_data$name, NA)
   description <- ifelse(!is.null(loc_data$description), loc_data$description, NA)
@@ -70,10 +70,10 @@ get_location_info <- function(location_id) {
   price_level <- ifelse(!is.null(loc_data$price_level), loc_data$price_level, NA)
   ranking <- ifelse(!is.null(loc_data$ranking_data$ranking_string), loc_data$ranking_data$ranking_string, NA)
   awards <- ifelse(!is.null(loc_data$awards$award_type), loc_data$awards$award_type, NA)
-  
+
   # create a tidy data frame
   info_df <- data.frame(
-    "Name" = name, 
+    "Name" = name,
     "Description" = description,
     "Category" = category,
     "Trip Advisor URL" = web_url,
@@ -92,7 +92,7 @@ get_location_info <- function(location_id) {
     "Ranking" = ranking,
     "Awards" = awards
   )
-  
+
   return(info_df)
-  
+
 }

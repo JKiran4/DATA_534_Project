@@ -14,12 +14,10 @@ top_ten(string, type = NA, city = NA)
 
 \item{city}{Optional field that will limit search to a specific geo location}
 }
+\value{
+10 obs. of 4 variables: id, name, country, address
+}
 \description{
 This function returns IDs and names on the top ten best matches of businesses
 based on a search string and optional business type and location filters
 }
-\examples{
-top_ten()
-}
-\keyword{business}
-\keyword{search}

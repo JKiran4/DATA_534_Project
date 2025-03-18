@@ -9,12 +9,10 @@ get_city(string)
 \arguments{
 \item{string}{The search string to find the city}
 }
+\value{
+A string in the format "YY.YYYYYY\%2CXXX.XXXXX" where X and Y are latitude and longitude coordinates
+}
 \description{
 This function allows you to search by city name and returns the latitude and
 longitude formatted for use in further API requests
 }
-\examples{
-get_city()
-}
-\keyword{city}
-\keyword{search}
