@@ -7,14 +7,11 @@
 #'
 #' @param string The search string to find the city
 #'
-#' @keywords city search
+#' @return A string in the format "YY.YYYYYY%2CXXX.XXXXX" where X and Y are latitude and longitude coordinates
 #'
 #' @import httr
 #'
 #' @export
-#'
-#' @examples
-#' get_city()
 
 get_city <- function(string) {
 

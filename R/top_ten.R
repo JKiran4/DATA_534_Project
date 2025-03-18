@@ -10,14 +10,11 @@
 #' "attractions", "restaurants", or "geos".
 #' @param city Optional field that will limit search to a specific geo location
 #'
-#' @keywords business search
+#' @return 10 obs. of 4 variables: id, name, country, address
 #'
 #' @import httr
 #'
 #' @export
-#'
-#' @examples
-#' top_ten()
 
 top_ten <- function(string, type = NA, city = NA) {
 

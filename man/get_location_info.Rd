@@ -17,6 +17,3 @@ This function allows the user to input a location ID
 which will then provide information for the specified location
 Users can optionally set the currency for results (default CAD)
 }
-\examples{
-get_location_info()
-}
