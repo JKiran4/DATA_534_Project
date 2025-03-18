@@ -2,7 +2,7 @@ library(TripadvisoR)
 
 context("Testing get_location_info")
 
-api_key = Sys.getenv("api_key")
+api_key = Sys.getenv("API_KEY")
 
 test_that("Function returns a data frame from valid location id", {
   result <- get_location_info(4065774)
