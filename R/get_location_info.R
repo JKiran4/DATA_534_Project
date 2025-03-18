@@ -16,6 +16,8 @@
 
 get_location_info <- function(location_id) {
 
+  api_key <- Sys.getenv("API_KEY")
+
   params <- list(
     key = api_key,
     language = "en",
