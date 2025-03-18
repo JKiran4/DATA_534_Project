@@ -35,7 +35,7 @@ nearby_search <- function(location_name, type = NA) {
   params <- list(
     key = api_key,
     latLong = latLong,
-    category = category
+    category = type
   )
   
   response <- GET("https://api.content.tripadvisor.com/api/v1/location/nearby_search", query = params)
@@ -59,8 +59,6 @@ nearby_search <- function(location_name, type = NA) {
     }
     
   } else {
-    return(paste("Error:", status_code(response)))
+    return(paste("Error:", status_code(response), ", invalid input"))
   }
 }
-
-

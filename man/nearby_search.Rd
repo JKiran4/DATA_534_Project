@@ -4,7 +4,7 @@
 \alias{nearby_search}
 \title{Get Nearby Locations Function}
 \usage{
-nearby_search(location_name, category)
+nearby_search(location_name, type = NA)
 }
 \arguments{
 \item{location_name}{The search string to find the city}
