@@ -15,6 +15,8 @@
 
 get_city <- function(string) {
 
+  api_key <- Sys.getenv("API_KEY")
+
   if (length(string) > 1) {
     return ("Invalid input, pass only 1 search string argument")
   }
