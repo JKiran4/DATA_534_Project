@@ -10,8 +10,8 @@ jobs:
     runs-on: windows-latest
 
     env:
-      API_KEY: ${{ secrets.API_KEY }}  # Load API key for TripAdvisor API
-      GITHUB_PAT: ${{ secrets.GH_PAT }}  # Use GitHub PAT for installing packages
+      API_KEY: ${{ secrets.API_KEY }}
+      GITHUB_PAT: ${{ secrets.GH_PAT }}  
 
     steps:
       - name: Checkout repository
