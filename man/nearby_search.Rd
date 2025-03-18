@@ -9,7 +9,7 @@ nearby_search(location_name, type = NA)
 \arguments{
 \item{location_name}{The search string to find the city}
 
-\item{category}{The type of location to retrieve}
+\item{type}{The type of location to retrieve}
 }
 \value{
 A tidy dataframe with 10 locations of chosen category and their location_id, name, distance and bearing
