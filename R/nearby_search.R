@@ -18,6 +18,8 @@
 
 nearby_search <- function(location_name, type = NA) {
 
+  api_key <- Sys.getenv("API_KEY")
+
   latlong <- TripadvisoR::get_city(location_name)
 
   if (latlong == "") {
