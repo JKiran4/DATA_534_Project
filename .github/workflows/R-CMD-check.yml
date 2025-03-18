@@ -22,18 +22,13 @@ jobs:
 
       - name: Install Pandoc
         run: |
-          install.packages("rmarkdown")
-          install.packages("knitr")
-          install.packages("tinytex")  # Ensures full LaTeX support
-          tinytex::install_tinytex()   # Install TinyTeX (needed for PDF vignettes)
-        shell: Rscript {0}
+          choco install pandoc --yes
+        shell: bash
 
       - name: Install dependencies
         run: |
-          install.packages("remotes")
-          install.packages("devtools")
+          install.packages(c("remotes", "rmarkdown", "knitr", "devtools", "rcmdcheck"))
           remotes::install_deps(dependencies = TRUE)
-          install.packages("rcmdcheck")
         shell: Rscript {0}
 
       - name: Install package with authentication
@@ -53,7 +48,7 @@ jobs:
 
       - name: Run tests with API key
         run: |
-          Sys.setenv(API_KEY = Sys.getenv("API_KEY"))  # Set API key in R
+          Sys.setenv(API_KEY = Sys.getenv("API_KEY"))
           library(testthat)
           test_check("TripadvisoR")
         shell: Rscript {0}
