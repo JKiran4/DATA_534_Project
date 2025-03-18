@@ -45,17 +45,3 @@ jobs:
         run: |
           rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning", check_dir = "check")
         shell: Rscript {0}
-
-      - name: Run tests with API key
-        run: |
-          Sys.setenv(API_KEY = Sys.getenv("API_KEY"))
-          library(testthat)
-          test_check("TripadvisoR")
-        shell: Rscript {0}
-
-      - name: Upload check results (if failed)
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: R-CMD-check-results
-          path: check
