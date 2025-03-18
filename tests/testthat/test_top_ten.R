@@ -3,7 +3,7 @@ library(dplyr)
 
 context("Testing top_ten")
 
-api_key <- Sys.getenv("api_key")
+api_key <- Sys.getenv("API_KEY")
 
 test_that("Function filters by city", {
   output <- top_ten("sushi", city = "kelowna")
