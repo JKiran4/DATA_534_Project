@@ -1,10 +1,11 @@
 \name{TripadvisoR}
 \alias{TripadvisoR}
+\docType{package}
 \title{Tripadvisor RESTful API Wrapper}
 \author{Kiran John, Foster Lockerbie, Seamus Riordan-Short}
 \description{
-This function gets useful information from the Tripadvisor API. See examples below
-for various functions available.
+This package contains functions to get useful information from the Tripadvisor
+API. See examples below for various functions available.
 }
 \examples{
 results <- top_ten("sushi", "restaurants", "kelowna")

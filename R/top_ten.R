@@ -1,13 +1,21 @@
 #' @name top_ten
+#'
 #' @title Top Ten Function
+#'
 #' @description This function returns IDs and names on the top ten best matches of businesses
 #' based on a search string and optional business type and location filters
+#'
 #' @param string The search string for the query
 #' @param type Optional field to limit the business type to one of "hotels",
 #' "attractions", "restaurants", or "geos".
 #' @param city Optional field that will limit search to a specific geo location
+#'
 #' @keywords business search
+#'
+#' @import httr
+#'
 #' @export
+#'
 #' @examples
 #' top_ten()
 
@@ -40,25 +48,32 @@ top_ten <- function(string, type = NA, city = NA) {
   }
 
   response <- GET("https://api.content.tripadvisor.com/api/v1/location/search", query = params)
-  content_data <- content(response, as = "parsed")
 
-  results <- data.frame(
-    id = character(),
-    name = character(),
-    country = character(),
-    address = character(),
-    stringsAsFactors = FALSE
-  )
+  if (status_code(response) == 200) {
 
-  for (i in 1:length(content_data$data)) {
-    results[i, "id"] <- content_data$data[[i]]$location_id
-    results[i, "name"] <- content_data$data[[i]]$name
-    results[i, "country"] <- content_data$data[[i]]$address_obj$country
-    results[i, "address"] <- content_data$data[[i]]$address_obj$address_string
+    content_data <- content(response, as = "parsed")
+
+    results <- data.frame(
+      id = character(),
+      name = character(),
+      country = character(),
+      address = character(),
+      stringsAsFactors = FALSE
+    )
+
+    if (length(content_data$data) == 0) { return("No results!") }
+
+    for (i in 1:length(content_data$data)) {
+      results[i, "id"] <- content_data$data[[i]]$location_id
+      results[i, "name"] <- content_data$data[[i]]$name
+      results[i, "country"] <- content_data$data[[i]]$address_obj$country
+      results[i, "address"] <- content_data$data[[i]]$address_obj$address_string
+    }
+
+    return(results)
+
+  } else {
+    return(paste("Error:", status_code(response)))
   }
-
-  if (is.null(results)) { return("No results!") }
-
-  return(results)
 
 }

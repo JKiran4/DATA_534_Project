@@ -1,0 +1,144 @@
+---
+title: "TripadvisoR for Dummies"
+author: "Kiran John, Foster Lockerbie, Seamus-Riordan Short"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to FixerR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+```
+
+# About
+The `TripadvisoR` package offers a suite of functions for the [Tripadvisor API](https://tripadvisor-content-api.readme.io/). Note that users are able to make 5,000 free monthly calls before being charged.
+
+> "Increase your user experience, engagement, and conversion with Tripadvisor’s globally recognized and highly trusted content. Our partner API provides you with dynamic access to Tripadvisor content, enabling seamless integration with your website and applications. Locations are defined within this API as hotels, restaurants or attractions."
+
+This R package utilizes the various APIs provided by Tripadvisor to retrieve:
+- city information based on a string
+- the top 10 locations based on a string, with the option of specifying coordinates to search from
+- the 10 closest locations within proxmity of a specified attraction
+- provide detailed information for a given location id
+
+## Installation
+
+`TripadvisoR` is available publicly on [GitHub](https://github.com/JKiran4/TripadvisoR)
+
+```{r}
+devtools::install_github('JKiran4/TripadvisoR')
+```
+
+## Load Package
+```{r}
+library(TripadvisoR)
+```
+
+## Access Key
+Before running functions, make sure to retrieve the api key from Tripadvisor and store it either as a system variable, or locally in your workbook.
+```{r}
+
+# api_key = "YOUR API KEY"
+# Sys.setenv("api_key" = "YOUR API KEY")
+# access_key = Sys.getenv('api_key')
+
+```
+
+## Functions
+### Get city coordinates
+`get_city(string)` takes in a user string to search for a city in Tripadvisor. The first result will be outputted as latitude and longitude coordinates which can then be passed to other functions.
+
+### Top ten locations
+`top_ten(string, type = NA, city = NA)` takes in multiple inputs to return basic information on the top ten location results (location id, name, country, address string) from Tripadvisor. The type refers to the optional location type which is a string (hotels, attractions, restaurants, geos, NA). The city is an optional string which will call the `get_city()`
+function if the user inputs a string.
+
+### Nearby location serach
+`nearby_search(location_name, type = NA)` takes in a location name to return the top 10 closest locations, with an optional parameter to specify the type like the `top_ten()` function.
+
+### Location information
+`get_location_info(location_id)` takes in a location id to output a data frame with information corresponding to the location.
+
+## Example
+```{r echo = FALSE}
+
+api_key = "YOUR API KEY"
+
+```
+
+```{r get city coordinates}
+
+# get city information from the following string: "Vancouver in Canada"
+get_city(string = "Vancouver in Canada")
+
+```
+
+```{r top ten locations}
+
+# get top 10 results for restaurants in "Kelowna" with the string "Best Sushi in Town"
+top_ten(string = "Best Sushi in Town", type = "restaurants", city = "Kelowna")
+
+```
+```{r nearby_search}
+
+# nearby search for "YAMA Kitchen Kelowna" with category "restaurants"
+nearby_search(location_name = "YAMA Kitchen Kelowna", category = "restaurants")
+
+```
+
+```{r location information}
+
+# get location info for the ID 1996323
+get_location_info(location_id = 1996323)
+
+```
+
+```{r ratings histogram, fig.width=6, fig.height=3.5}
+
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+
+# get top 10 restaurants
+top_10_df <- top_ten("Best Sushi in Town", type = "restaurants", city = "Kelowna")
+
+# only need ids
+ids <- top_10_df$id
+
+# retrieve location information, filtering for name and rating columns
+location_data <- lapply(ids, function(id) {
+  info <- get_location_info(id)
+  info %>%
+    select(Name, `Count.1.Star.Ratings`, `Count.2.Star.Ratings`, 
+           `Count.3.Star.Ratings`, `Count.4.Star.Ratings`, `Count.5.Star.Ratings`)
+})
+
+# combine into a single data frame and convert to long format
+ratings_df <- bind_rows(location_data)
+
+ratings_long <- ratings_df %>%
+  pivot_longer(cols = -Name, names_to = "Star_Rating", values_to = "Count")
+
+# making cleaner labels
+ratings_long$Star_Rating <- factor(ratings_long$Star_Rating, 
+                                   levels = colnames(ratings_df)[-1],  
+                                   labels = c("1 Star", "2 Stars", "3 Stars", "4 Stars", "5 Stars"))
+
+# make sure rating counts are numeric, not categorical
+ratings_long$Count <- as.numeric(ratings_long$Count)
+
+# generate plots for each restaurant
+for (restaurant in unique(ratings_long$Name)) {
+  plot <- ggplot(ratings_long %>% filter(Name == restaurant), aes(x = Star_Rating, y = Count, fill = Star_Rating)) +
+    geom_bar(stat = "identity") +
+    labs(title = paste(restaurant, "Reviews"), x = NULL, y = "Count") +
+    theme_minimal() +
+    theme(legend.position = "none") +
+    scale_fill_brewer(palette = "Set2")
+  
+  print(plot)
+}
+
+```
+
