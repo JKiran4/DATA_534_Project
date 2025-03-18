@@ -3,7 +3,7 @@ title: "TripadvisoR for Dummies"
 author: "Kiran John, Foster Lockerbie, Seamus-Riordan Short"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Introduction to FixerR}
+  %\VignetteIndexEntry{TripadvisoR for Dummies}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
