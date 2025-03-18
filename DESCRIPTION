@@ -2,7 +2,7 @@ Package: TripadvisoR
 Title: An All Inclusive R Package For The TripadvisoR API
 Version: 1.0.0
 Authors@R: c(
-    person("Kiran", "John", email = "john.kiran04@gmail.com", role = c("aut")),
+    person("Kiran", "John", email = "john.kiran04@gmail.com", role = c("aut", "cre")),
     person("Foster", "Lockerbie", email = "seamusprs@gmail.com", role = c("aut")),
     person("Seamus", "Riordan-Short", email = "lockerbief@gmail.com", role = c("aut"))
     )
