@@ -2,7 +2,7 @@ library(TripadvisoR)
 
 context("Testing nearby_search")
 
-api_key = Sys.getenv("api_key")
+api_key = Sys.getenv("API_KEY")
 
 test_that("Function returns a data frame from valid location name", {
   result <- nearby_search(location_name = "Vancouver", type = "restaurants")
