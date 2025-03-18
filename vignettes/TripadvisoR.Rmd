@@ -37,12 +37,11 @@ library(TripadvisoR)
 ```
 
 ## Access Key
-Before running functions, make sure to retrieve the api key from Tripadvisor and store it either as a system variable, or locally in your workbook.
+Before running functions, make sure to retrieve the api key from Tripadvisor and store it either as a system variable.
 ```{r}
 
-# api_key = "YOUR API KEY"
 # Sys.setenv("api_key" = "YOUR API KEY")
-# access_key = Sys.getenv('api_key')
+# api_key = Sys.getenv('api_key')
 
 ```
 
